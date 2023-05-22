@@ -1,0 +1,37 @@
+﻿@model RegisterAndLoginSystem.Models.User
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+@using ( Html.BeginForm("Register", "AccountV2", FormMethod.Post) )
+{
+    <div class="form-group">
+        @Html.LabelFor(user => user.Name)
+        @Html.TextBoxFor(user => user.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(user => user.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(user => user.Email)
+        @Html.TextBoxFor(user => user.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(user => user.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(user => user.Password)
+        @Html.TextBoxFor(user => user.Password, new { @class = "form-control", type = "Password"})
+        @Html.ValidationMessageFor(user => user.Password)
+    </div>
+
+    @Html.HiddenFor(user => user.Id)
+
+    <button type="submit" class="btn btn-primary">Register</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
